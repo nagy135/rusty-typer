@@ -10,8 +10,6 @@ ENV PATH /app/node_modules/.bin:$PATH
 # install app dependencies
 COPY --chown=node ./ ./
 
-USER node
-
 RUN yarn install
 
 # start app
