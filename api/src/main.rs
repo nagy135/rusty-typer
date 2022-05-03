@@ -1,6 +1,8 @@
 #[macro_use]
 extern crate rocket;
 
+use rocket::response::status;
+
 #[get("/")]
 fn index() -> &'static str {
     "Hello, world!"
@@ -31,10 +33,20 @@ fn delete_game() -> &'static str {
     "DELETE GAMES"
 }
 
-// r.GET("/games/:id/players", handlers.GetGamePlayers(db))
-// r.POST("/games/:id/join", handlers.JoinGame(db))
-//
-// r.POST("/players/:id/update-progress", handlers.UpdatePlayerProgress(db))
+#[get("/games/<id>/players")]
+fn get_game_players(id: i32) -> status::Accepted<String> {
+    status::Accepted(Some(format!("GET GAME PLAYERS {}", id)))
+}
+
+#[post("/games/<id>/join")]
+fn join_game(id: i32) -> status::Accepted<String> {
+    status::Accepted(Some(format!("JOIN GAME {}", id)))
+}
+
+#[post("/players/<id>/update-progress")]
+fn update_progress(id: i32) -> status::Accepted<String> {
+    status::Accepted(Some(format!("UPDATE PROGRESS {}", id)))
+}
 
 #[launch]
 fn rocket() -> _ {
@@ -46,7 +58,10 @@ fn rocket() -> _ {
             post_text,
             get_games,
             post_game,
-            delete_game
+            delete_game,
+            get_game_players,
+            join_game,
+            update_progress
         ],
     )
 }
