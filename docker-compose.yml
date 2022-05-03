@@ -17,10 +17,10 @@ services:
     # env_file:
     #   - ./env/.env.global
     #   - ./env/.env.api
-    # volumes:
-    #   - ./api:/app
+    volumes:
+      - ./api:/app
     ports:
-      - "127.0.0.1:8000:6666"
+      - "127.0.0.1:8080:8080"
 
   # FRONTEND
   app:
