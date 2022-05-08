@@ -1,13 +1,14 @@
 version: "3.7"
 services:
+
   # DATABASE
-  # postgres:
-  #   image: postgres:13.1
-  #   volumes:
-  #     - database:/var/lib/postgresql/data
-  #   ports:
-  #     - "127.0.0.1:4210:5432"
-  #   env_file: ./env/.env.postgres
+  database:
+    image: postgres:13.1
+    volumes:
+      - database:/var/lib/postgresql/data
+    ports:
+      - "127.0.0.1:4210:5432"
+    env_file: ./env/.env.postgres
 
   # BACKEND
   api:
@@ -39,6 +40,6 @@ services:
   #   ports:
   #     - "127.0.0.1:3567:3567"
 
-# volumes:
-#   database:
-#     name: database
+volumes:
+  database:
+    name: database
