@@ -1,3 +1,5 @@
 .vscode/launch.json
 
 api/src/data.db
+app/dist
+app/target
